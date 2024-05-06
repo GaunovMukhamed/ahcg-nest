@@ -9,14 +9,17 @@ export class GameGateway {
     private _gameService: GameService
   ) {}
 
+  login: string | undefined;
+
   async handleConnection(client: Socket): Promise<void> {
-    console.log('connected')
-    // const authData: string[] | null = client['handshake']['headers']['authorization'].split(`~/`) ?? null;
-    // if(authData) {
-    //   this.game = new Game(authData[0], authData[1], client, this._gameService);
-    // } else {
-    //   client.destroy();
-    // }
+    const login: string | null = client['handshake']['headers']['authorization'] ?? null;
+    if(login && !this._gameService.players.includes(login)) {
+      this.login = login;
+      this._gameService.players.push(login);
+    } else {
+      client.emit('character', '');
+      client.destroy();
+    }
   }
 
   @SubscribeMessage('characterInfo')
@@ -25,7 +28,6 @@ export class GameGateway {
   }
 
   handleDisconnect(): void {
-    // this._gameService.updateCharacter(this.game!.character.name, this.game.character);
-    // clearInterval(this.game!.autosaveInterval);
+    this._gameService.players = this._gameService.players.filter((login: string) => login !== this.login)
   }
 }

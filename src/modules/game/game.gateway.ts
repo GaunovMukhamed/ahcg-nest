@@ -1,6 +1,7 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { GameService } from './game.service';
 import { Socket, Server } from "socket.io";
+import { GameState } from './models';
 @WebSocketGateway(3002, { cors: true })
 export class GameGateway {
 
@@ -19,17 +20,14 @@ export class GameGateway {
       this.login = login;
       this._gameService.players.push(login);
       client.join("main");
-      console.log(this._gameService.players)
-      // console.log((await this.server.in('main').fetchSockets()).length);
     } else {
       client.emit('logout', '');
-      // client.destroy();
     }
   }
 
-  @SubscribeMessage('characterInfo')
-  async handleCharacterInfoMessage(client: Socket, { login, character }): Promise<void> {
-    // client.emit('character', await this._gameService.getCharacterInfo(client, login, character));
+  @SubscribeMessage('getGameState')
+  async handleCharacterInfoMessage(client: Socket, msg: any): Promise<GameState> {
+    return this._gameService.getGameState();
   }
 
   handleDisconnect(): void {

@@ -1,13 +1,15 @@
-import { SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
+import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { GameService } from './game.service';
-import { Socket } from 'net';
-
+import { Socket, Server } from "socket.io";
 @WebSocketGateway(3002, { cors: true })
 export class GameGateway {
 
   constructor(
     private _gameService: GameService
   ) {}
+
+  @WebSocketServer()
+  server: Server;
 
   login: string | undefined;
 
@@ -16,9 +18,12 @@ export class GameGateway {
     if(login && !this._gameService.players.includes(login)) {
       this.login = login;
       this._gameService.players.push(login);
+      client.join("main");
+      console.log(this._gameService.players)
+      // console.log((await this.server.in('main').fetchSockets()).length);
     } else {
-      client.emit('character', '');
-      client.destroy();
+      client.emit('logout', '');
+      // client.destroy();
     }
   }
 
@@ -28,6 +33,6 @@ export class GameGateway {
   }
 
   handleDisconnect(): void {
-    this._gameService.players = this._gameService.players.filter((login: string) => login !== this.login)
+    if(this.login) this._gameService.players = this._gameService.players.filter((login: string) => login !== this.login)
   }
 }

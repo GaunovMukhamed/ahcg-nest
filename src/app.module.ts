@@ -20,7 +20,7 @@ import { GameModule } from './modules/game/game.module';
   ],
   providers: [
     AppService,
-    ToolsService,
+    ToolsService
   ],
 })
 export class AppModule {}

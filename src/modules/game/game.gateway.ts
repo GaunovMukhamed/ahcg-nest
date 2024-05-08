@@ -21,6 +21,7 @@ export class GameGateway {
       client.join("main");
     } else {
       client.emit('logout', '');
+      client.disconnect();
     }
   }
 

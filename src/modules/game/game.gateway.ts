@@ -16,9 +16,9 @@ export class GameGateway {
   async handleConnection(client: Socket): Promise<void> {
     const login: string | null = client['handshake']['headers']['authorization'] ?? null;
     const alreadyConnected: boolean = !!(await this.server.in('main').fetchSockets()).find((sk: any) => sk['handshake']['headers']['authorization'] === login);
+    this.login = login;
     if(login && !alreadyConnected) {
-      this.login = login;
-      this._gameService.players[this.login] = new Player();
+      if(this._gameService.gameState === 0) this._gameService.players[this.login] = new Player();
       client.join("main");
     } else {
       client.emit('logout', '');
@@ -38,7 +38,7 @@ export class GameGateway {
 
   @SubscribeMessage('setReady')
   async handleSetReadyrMessage(client: Socket, value: boolean): Promise<void> {
-    this._gameService.setPlayerReady(client, value);
+    this._gameService.setPlayerReady(client, value, this.server);
   }
 
   async handleDisconnect(): Promise<void> {

@@ -13,4 +13,5 @@ export interface Players {
 export class Player {
   character: Character | null = null;
   ready: boolean = false;
+  isHost: boolean = false;
 }

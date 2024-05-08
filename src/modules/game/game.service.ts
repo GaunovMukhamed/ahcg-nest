@@ -43,10 +43,15 @@ export class GameService {
     }
   }
 
-  async setPlayerReady(client: Socket, value: boolean): Promise<void> {
+  async setPlayerReady(client: Socket, value: boolean, server: Server): Promise<void> {
     if(this.players[getLogin(client)]) {
       this.players[getLogin(client)].ready = value;
-      client.emit('gameState', await this.getGameState());
+      //if all ready
+      if(Object.values(this.players).every((pl: Player) => pl.ready === true)) {
+        this.gameState = 1;
+        Object.values(this.players)[0].isHost = true;
+      }
+      server.emit('gameState', await this.getGameState());
     }
   }
 }

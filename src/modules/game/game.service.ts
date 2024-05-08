@@ -5,17 +5,20 @@ import { Model } from 'mongoose';
 import { GameState, Player, Players } from './models';
 import { ToolsService } from 'src/tools/tools.service';
 import { Socket, Server } from "socket.io";
+import { Scenario } from './schemas/scenario.schema';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class GameService {
 
   constructor(
     @InjectModel(Character.name) private _characterModel: Model<Character>,
+    @InjectModel(Scenario.name) private _scenarioModel: Model<Scenario>,
     private _toolsService: ToolsService
   ) {}
   
   gameState: 0|1|2 = 0; //1-выбор сценариев, 2-начало
   players: Players | {} = {};
+  scenario: number = 0;
 
   async getGameState(): Promise<GameState> {
     return {
@@ -53,6 +56,17 @@ export class GameService {
       }
       server.emit('gameState', await this.getGameState());
     }
+  }
+
+  async getScenarios(): Promise<Scenario[]> {
+    return await this._scenarioModel.find({}).exec()
+  }
+
+  async applyScenario(server: Server, scenarioId: number): Promise<void> {
+    this.scenario = scenarioId;
+    //prepare all cards for scenario
+    this.gameState = 2;
+    server.emit('gameState', await this.getGameState());
   }
 }
 

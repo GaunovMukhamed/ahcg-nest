@@ -2,6 +2,7 @@ import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/web
 import { GameService } from './game.service';
 import { Socket, Server } from "socket.io";
 import { GameState, Player } from './models';
+import { Scenario } from './schemas/scenario.schema';
 @WebSocketGateway(3002, { cors: true })
 export class GameGateway {
 
@@ -37,9 +38,21 @@ export class GameGateway {
   }
 
   @SubscribeMessage('setReady')
-  async handleSetReadyrMessage(client: Socket, value: boolean): Promise<void> {
+  async handleSetReadyMessage(client: Socket, value: boolean): Promise<void> {
     this._gameService.setPlayerReady(client, value, this.server);
   }
+
+  @SubscribeMessage('getScenarios')
+  async handleGetScenariosMessage(client: Socket): Promise<Scenario[]> {
+    return this._gameService.getScenarios();
+  }
+
+  @SubscribeMessage('applyScenario')
+  async handleapplyScenarioMessage(client: Socket, scenarioId: number): Promise<void> {
+    this._gameService.applyScenario(this.server, scenarioId);
+  }
+
+  applyScenario
 
   async handleDisconnect(): Promise<void> {
     if(this._gameService.gameState === 0) {

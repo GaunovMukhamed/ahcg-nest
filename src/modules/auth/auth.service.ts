@@ -11,13 +11,12 @@ export class AuthService {
 
   constructor(
     @InjectModel(User.name) private _userModel: Model<User>,
-    private _toolsService: ToolsService,
-    private _gameService: GameService
+    private _toolsService: ToolsService
   ) {}
 
   async getUser(login: string): Promise<SuccessResponse> {
     const user: User[] = await this._userModel.find({ login }).exec();
-    if(user.length > 0 && !this._gameService.players.includes(login)) {
+    if(user.length > 0) {
       return this._toolsService.returnSuccess('Вы авторизованы');
     } else {
       throw new HttpException('Ошибка авторизации', HttpStatus.UNAUTHORIZED);

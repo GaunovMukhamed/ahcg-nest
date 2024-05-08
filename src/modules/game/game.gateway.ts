@@ -9,16 +9,15 @@ export class GameGateway {
     private _gameService: GameService
   ) {}
 
-  @WebSocketServer()
-  server: Server;
+  @WebSocketServer() server: Server;
 
   login: string | undefined;
 
   async handleConnection(client: Socket): Promise<void> {
     const login: string | null = client['handshake']['headers']['authorization'] ?? null;
-    if(login && !this._gameService.players.includes(login)) {
+    const alreadyConnected: boolean = !!(await this.server.in('main').fetchSockets()).find((sk: any) => sk['handshake']['headers']['authorization'] === login);
+    if(login && !alreadyConnected) {
       this.login = login;
-      this._gameService.players.push(login);
       client.join("main");
     } else {
       client.emit('logout', '');
@@ -31,6 +30,5 @@ export class GameGateway {
   }
 
   handleDisconnect(): void {
-    if(this.login) this._gameService.players = this._gameService.players.filter((login: string) => login !== this.login)
   }
 }

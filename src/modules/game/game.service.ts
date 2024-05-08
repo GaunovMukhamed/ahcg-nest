@@ -12,7 +12,6 @@ export class GameService {
   ) {}
   
   status: boolean = false;
-  players: string[] = [];
 
   async getGameState(): Promise<GameState> {
     return {

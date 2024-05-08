@@ -1,8 +1,10 @@
 export interface SuccessResponse {
   message: string;
 }
-export interface ErrorResponse extends SuccessResponse {};
-export type SocketMessageType = 'map'|'character'|'notification';
+export interface ErrorResponse {
+  error: string;
+};
+export type SocketMessageType = 'characterSelection';
 export type MapObjectType = 'город'|'место';
 
 export type WeaponType = 'dagger'|'sword'|'axe';

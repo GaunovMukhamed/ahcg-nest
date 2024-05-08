@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { Socket } from 'net';
-import { SocketMessageType, SuccessResponse } from 'src/interfaces';
+import { ErrorResponse, SocketMessageType, SuccessResponse } from 'src/interfaces';
 
 @Injectable()
 export class ToolsService {
@@ -14,7 +14,7 @@ export class ToolsService {
     return { message };
   }
 
-  emitSocketMessage(client: Socket, type: SocketMessageType, message: any): void {
-    client.emit('game', { type, message });
-  };
+  returnError(message: string): ErrorResponse {
+    return { error: message }
+  }
 }

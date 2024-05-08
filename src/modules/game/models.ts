@@ -2,7 +2,7 @@ import { Character } from "./schemas/character.schema";
 
 export interface GameState {
   allCharacters: Character[];
-  gameStarted: boolean; // started - true
+  gameState: 0|1|2; // started - true
   players: Players;
 }
 
@@ -12,4 +12,5 @@ export interface Players {
 
 export class Player {
   character: Character | null = null;
+  ready: boolean = false;
 }

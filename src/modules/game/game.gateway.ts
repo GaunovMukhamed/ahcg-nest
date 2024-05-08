@@ -36,8 +36,13 @@ export class GameGateway {
     this._gameService.selectCharacter(client, this.server, chId);
   }
 
+  @SubscribeMessage('setReady')
+  async handleSetReadyrMessage(client: Socket, value: boolean): Promise<void> {
+    this._gameService.setPlayerReady(client, value);
+  }
+
   async handleDisconnect(): Promise<void> {
-    if(this._gameService.gameStarted === false) {
+    if(this._gameService.gameState === 0) {
       delete this._gameService.players[this.login];
       this.server.to('main').emit('gameState', await this._gameService.getGameState());
     };

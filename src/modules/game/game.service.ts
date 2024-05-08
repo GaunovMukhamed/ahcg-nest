@@ -14,13 +14,13 @@ export class GameService {
     private _toolsService: ToolsService
   ) {}
   
-  gameStarted: boolean = false;
+  gameState: 0|1|2 = 0; //1-выбор сценариев, 2-начало
   players: Players | {} = {};
 
   async getGameState(): Promise<GameState> {
     return {
       allCharacters: await this._characterModel.find({}).exec(),
-      gameStarted: this.gameStarted,
+      gameState: this.gameState,
       players: this.players
     }
   }
@@ -40,6 +40,13 @@ export class GameService {
           login
         });
       }
+    }
+  }
+
+  async setPlayerReady(client: Socket, value: boolean): Promise<void> {
+    if(this.players[getLogin(client)]) {
+      this.players[getLogin(client)].ready = value;
+      client.emit('gameState', await this.getGameState());
     }
   }
 }

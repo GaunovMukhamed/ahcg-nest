@@ -21,9 +21,16 @@ export class GameService {
   scenario: number = 0;
 
   async getGameState(login: string, force: boolean = false): Promise<GameState> {
+    if(this.gameState > 0 && !this.players[login] && force === false) {
+      return {
+        allCharacters: [],
+        gameState: null,
+        players: {}
+      }
+    }
     return {
       allCharacters: await this._characterModel.find({}).exec(),
-      gameState: (this.gameState > 0 && !this.players[login] && force === false) ? null : this.gameState,
+      gameState: this.gameState,
       players: this.players
     }
   }

@@ -20,10 +20,10 @@ export class GameService {
   players: Players | {} = {};
   scenario: number = 0;
 
-  async getGameState(): Promise<GameState> {
+  async getGameState(login: string, force: boolean = false): Promise<GameState> {
     return {
       allCharacters: await this._characterModel.find({}).exec(),
-      gameState: this.gameState,
+      gameState: (this.gameState > 0 && !this.players[login] && force === false) ? null : this.gameState,
       players: this.players
     }
   }
@@ -47,14 +47,15 @@ export class GameService {
   }
 
   async setPlayerReady(client: Socket, value: boolean, server: Server): Promise<void> {
-    if(this.players[getLogin(client)]) {
-      this.players[getLogin(client)].ready = value;
+    const login: string = getLogin(client);
+    if(this.players[login]) {
+      this.players[login].ready = value;
       //if all ready
       if(Object.values(this.players).every((pl: Player) => pl.ready === true)) {
         this.gameState = 1;
         Object.values(this.players)[0].isHost = true;
       }
-      server.emit('gameState', await this.getGameState());
+      server.emit('gameState', await this.getGameState(login));
     }
   }
 
@@ -62,11 +63,11 @@ export class GameService {
     return await this._scenarioModel.find({}).exec()
   }
 
-  async applyScenario(server: Server, scenarioId: number): Promise<void> {
+  async applyScenario(client: Socket, server: Server, scenarioId: number): Promise<void> {
     this.scenario = scenarioId;
     //prepare all cards for scenario
     this.gameState = 2;
-    server.emit('gameState', await this.getGameState());
+    server.emit('gameState', await this.getGameState(getLogin(client)));
   }
 }
 

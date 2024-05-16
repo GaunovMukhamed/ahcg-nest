@@ -19,7 +19,9 @@ export class GameGateway {
     const alreadyConnected: boolean = !!(await this.server.in('main').fetchSockets()).find((sk: any) => sk['handshake']['headers']['authorization'] === login);
     this.login = login;
     if(login && !alreadyConnected) {
-      if(this._gameService.gameState === 0) this._gameService.players[this.login] = new Player();
+      if(this._gameService.gameState === 0) {
+        this._gameService.players[this.login] = new Player();
+      }
       client.join("main");
     } else {
       client.emit('logout', '');
@@ -29,7 +31,7 @@ export class GameGateway {
 
   @SubscribeMessage('getGameState')
   async handleGetGameStateMessage(): Promise<GameState> {
-    return this._gameService.getGameState();
+    return this._gameService.getGameState(this.login);
   }
 
   @SubscribeMessage('selectCharacter')
@@ -49,15 +51,13 @@ export class GameGateway {
 
   @SubscribeMessage('applyScenario')
   async handleapplyScenarioMessage(client: Socket, scenarioId: number): Promise<void> {
-    this._gameService.applyScenario(this.server, scenarioId);
+    this._gameService.applyScenario(client, this.server, scenarioId);
   }
-
-  applyScenario
 
   async handleDisconnect(): Promise<void> {
     if(this._gameService.gameState === 0) {
       delete this._gameService.players[this.login];
-      this.server.to('main').emit('gameState', await this._gameService.getGameState());
+      this.server.to('main').emit('gameState', await this._gameService.getGameState(this.login, true));
     };
   }
 }

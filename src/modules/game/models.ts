@@ -15,3 +15,5 @@ export class Player {
   ready: boolean = false;
   isHost: boolean = false;
 }
+
+export type CharacterDeckType = 'keeper'|'seeker'|'mystic'|'survivor'|'dodger';

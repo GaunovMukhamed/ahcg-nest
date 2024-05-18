@@ -3,6 +3,7 @@ import { GameService } from './game.service';
 import { Socket, Server } from "socket.io";
 import { GameState, Player } from './models';
 import { Scenario } from './schemas/scenario.schema';
+
 @WebSocketGateway(3002, { cors: true })
 export class GameGateway {
 

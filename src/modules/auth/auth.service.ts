@@ -4,7 +4,6 @@ import { User } from './user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ToolsService } from 'src/tools/tools.service';
-import { GameService } from '../game/game.service';
 
 @Injectable()
 export class AuthService {

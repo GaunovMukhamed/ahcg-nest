@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { CharacterDeckType } from '../models';
 
 export type UserDocument = HydratedDocument<Character>;
 
@@ -27,6 +28,8 @@ export class Character {
   frontImg: string;
   @Prop({required: true})
   miniImg: string;
+  @Prop({required: true})
+  deckTypes: CharacterDeckType[];
 }
 
 export const CharacterSchema = SchemaFactory.createForClass(Character);

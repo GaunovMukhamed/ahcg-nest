@@ -5,13 +5,14 @@ import { GameGateway } from './game.gateway';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Character, CharacterSchema } from './schemas/character.schema';
 import { Scenario, ScenarioSchema } from './schemas/scenario.schema';
-import { DodgerCard, DodgerSchema, KeeperCard, KeeperSchema, MysticCard, MysticSchema, SeekerCard, SeekerSchema, SurvivorCard, SurvivorcSchema } from './schemas/deck.shemas';
+import { CommonCard, CommonSchema, DodgerCard, DodgerSchema, KeeperCard, KeeperSchema, MysticCard, MysticSchema, SeekerCard, SeekerSchema, SurvivorCard, SurvivorcSchema } from './schemas/deck.shemas';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Character.name, schema: CharacterSchema },
       { name: Scenario.name, schema: ScenarioSchema },
+      { name: CommonCard.name, schema: CommonSchema, collection: 'commondeck' },
       { name: KeeperCard.name, schema: KeeperSchema, collection: 'keeperdeck' },
       { name: SeekerCard.name, schema: SeekerSchema, collection: 'seekerdeck' },
       { name: MysticCard.name, schema: MysticSchema, collection: 'mysticdeck' },

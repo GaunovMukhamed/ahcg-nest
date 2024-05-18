@@ -2,12 +2,12 @@ import { Injectable, Scope } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Character } from './schemas/character.schema';
 import { Model } from 'mongoose';
-import { CharacterDeckType, GameState, Player, Players } from './models';
+import { CharacterDeckType, DeckBuilderInfo, GameStage, GameState, Player, Players } from './models';
 import { ToolsService } from 'src/tools/tools.service';
 import { Socket, Server } from "socket.io";
 import { GameCard } from './schemas/game-card.schema';
 import { Scenario } from './schemas/scenario.schema';
-import { DodgerCard, KeeperCard, MysticCard, SeekerCard, SurvivorCard } from './schemas/deck.shemas';
+import { CommonCard, DodgerCard, KeeperCard, MysticCard, SeekerCard, SurvivorCard } from './schemas/deck.shemas';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class GameService {
@@ -16,6 +16,7 @@ export class GameService {
     private _toolsService: ToolsService,
     @InjectModel(Character.name) private _characterModel: Model<Character>,
     @InjectModel(Scenario.name) private _scenarioModel: Model<Scenario>,
+    @InjectModel(CommonCard.name) private _commonCardModel: Model<KeeperCard>,
     @InjectModel(KeeperCard.name) private _keeperCardModel: Model<KeeperCard>,
     @InjectModel(SeekerCard.name) private _seekerCardModel: Model<SeekerCard>,
     @InjectModel(MysticCard.name) private _mysticCardModel: Model<MysticCard>,
@@ -23,12 +24,11 @@ export class GameService {
     @InjectModel(DodgerCard.name) private _dodgerCardModel: Model<DodgerCard>,
   ) {}
   
-  gameState: 0|1|2 = 0; //1-выбор сценариев, 2-начало
+  gameState: GameStage = 0;
   players: Players | {} = {};
   scenario: number = 0;
 
   characterTypeDecks: Map<CharacterDeckType, GameCard[]> = new Map();
-  keeperDeck: GameCard[] = [];
 
   async getGameState(login: string, force: boolean = false): Promise<GameState> {
     if(this.gameState > 0 && !this.players[login] && force === false) {
@@ -84,16 +84,29 @@ export class GameService {
     this.scenario = scenarioId;
     this.gameState = 2;
     this.startGame();
-    // server.emit('gameState', await this.getGameState(getLogin(client)));
+    server.emit('gameState', await this.getGameState(getLogin(client)));
+  }
+
+  getDeckBuilderInfo(client: Socket): DeckBuilderInfo {
+    const login = getLogin(client);
+    const result: DeckBuilderInfo = {
+      selectedCards: this.players[login].playerDeck,
+      decks: this.players[login].allDecks
+    };
+    
+    return result;
   }
 
   private async startGame(): Promise<void> {
-    await this._loadCharacterDeckTypes();
+    Object.values(this.players).map((pl: Player) => pl.ready = false);
+    await this._loadCharacterDeckTypesFromBase();
+    this._addDecksToCharacters();
   }
 
-  private async _loadCharacterDeckTypes(): Promise<void> {
+  private async _loadCharacterDeckTypesFromBase(): Promise<void> {
     this.characterTypeDecks = new Map();
     const characterDeckTypesToLoad: Set<CharacterDeckType> = new Set<CharacterDeckType>();
+    characterDeckTypesToLoad.add('common');
     Object.values(this.players).map((pl: Player) => {
       pl.character.deckTypes.map((type: CharacterDeckType) => characterDeckTypesToLoad.add(type))
     });
@@ -114,9 +127,23 @@ export class GameService {
         case 'dodger':
           this.characterTypeDecks.set('dodger', await this._dodgerCardModel.find({}).exec());
           break;
+        case 'common':
+          this.characterTypeDecks.set('common', await this._commonCardModel.find({}).exec());
+          break;
       }
     }))
-    console.log(this.characterTypeDecks)
+  }
+
+  private _addDecksToCharacters(): void {
+    Object.values(this.players).map((pl: Player) => {
+      pl.playerDeck = [];
+      pl.allDecks = {
+        common: [...this.characterTypeDecks.get('common')]
+      };
+      pl.character.deckTypes.map((deckType: CharacterDeckType) => {
+        pl.allDecks[deckType] = [...this.characterTypeDecks.get(deckType)];
+      })
+    })
   }
 }
 

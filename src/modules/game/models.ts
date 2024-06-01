@@ -27,3 +27,8 @@ export type DeckBuilderInfo = {
   selectedCards: GameCard[];
   decks: {[key in CharacterDeckType]?: GameCard[]}
 };
+
+export interface SelectedPlayerCardInfo {
+  id: number;
+  type: CharacterDeckType
+}

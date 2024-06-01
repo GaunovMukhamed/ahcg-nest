@@ -2,7 +2,7 @@ import { Injectable, Scope } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Character } from './schemas/character.schema';
 import { Model } from 'mongoose';
-import { CharacterDeckType, DeckBuilderInfo, GameStage, GameState, Player, Players } from './models';
+import { CharacterDeckType, DeckBuilderInfo, GameStage, GameState, Player, Players, SelectedPlayerCardInfo } from './models';
 import { ToolsService } from 'src/tools/tools.service';
 import { Socket, Server } from "socket.io";
 import { GameCard } from './schemas/game-card.schema';
@@ -69,8 +69,16 @@ export class GameService {
       this.players[login].ready = value;
       //if all ready
       if(Object.values(this.players).every((pl: Player) => pl.ready === true)) {
-        this.gameState = 1;
-        Object.values(this.players)[0].isHost = true;
+        switch(this.gameState) {
+          case 0:
+            this.gameState = 1;
+            Object.values(this.players)[0].isHost = true;
+            break;
+          case 1:
+            this.gameState = 2;
+            break;
+        }
+       
       }
       server.emit('gameState', await this.getGameState(login));
     }
@@ -95,6 +103,16 @@ export class GameService {
     };
     
     return result;
+  }
+
+  setPlayerSelectedCards(client: Socket, selectedCardsInfo: SelectedPlayerCardInfo[]): void {
+    const login = getLogin(client);
+    const playerDeck: GameCard[] = []; 
+    selectedCardsInfo.map((cardInfo: SelectedPlayerCardInfo) => {
+      const card: GameCard | undefined = this._checkPlayerCardExistAndGet(cardInfo);
+      if(card) playerDeck.push(card); 
+    });
+    this.players[login].playerDeck = playerDeck;
   }
 
   private async startGame(): Promise<void> {
@@ -144,6 +162,10 @@ export class GameService {
         pl.allDecks[deckType] = [...this.characterTypeDecks.get(deckType)];
       })
     })
+  }
+
+  private _checkPlayerCardExistAndGet(cardInfo: SelectedPlayerCardInfo): GameCard | undefined {
+    return this.characterTypeDecks.get(cardInfo.type)?.flat(1).find((card: GameCard) => card.id === cardInfo.id)??undefined;
   }
 }
 

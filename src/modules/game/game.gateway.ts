@@ -1,7 +1,7 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { GameService } from './game.service';
 import { Socket, Server } from "socket.io";
-import { CharacterDeckType, DeckBuilderInfo, GameState, Player } from './models';
+import { CharacterDeckType, DeckBuilderInfo, GameState, Player, SelectedPlayerCardInfo } from './models';
 import { Scenario } from './schemas/scenario.schema';
 import { GameCard } from './schemas/game-card.schema';
 
@@ -38,27 +38,58 @@ export class GameGateway {
 
   @SubscribeMessage('selectCharacter')
   async handleSelectCharacterMessage(client: Socket, chId: number): Promise<void> {
-    this._gameService.selectCharacter(client, this.server, chId);
+    try {
+      this._gameService.selectCharacter(client, this.server, chId);
+    } catch {
+      client.emit('error', 'Ошибка при выборе персонажа')
+    }
   }
 
   @SubscribeMessage('setReady')
   async handleSetReadyMessage(client: Socket, value: boolean): Promise<void> {
-    this._gameService.setPlayerReady(client, value, this.server);
+    try {
+      this._gameService.setPlayerReady(client, value, this.server);
+    } catch {
+      client.emit('error', 'Ошибка')
+    }
   }
 
   @SubscribeMessage('getScenarios')
   async handleGetScenariosMessage(client: Socket): Promise<Scenario[]> {
-    return this._gameService.getScenarios();
+    try {
+      return this._gameService.getScenarios();
+    } catch {
+      client.emit('error', 'Ошибка при получении сценариев')
+      return [];
+    }
   }
 
   @SubscribeMessage('applyScenario')
   async handleApplyScenarioMessage(client: Socket, scenarioId: number): Promise<void> {
-    this._gameService.applyScenario(client, this.server, scenarioId);
+    try {
+      this._gameService.applyScenario(client, this.server, scenarioId);
+    } catch {
+      client.emit('error', 'Ошибка при выборе сценария')
+    }
   }
 
   @SubscribeMessage('getDeckBuilderCards')
   handleGetDeckBuilderCardsMessage(client: Socket): DeckBuilderInfo {
-    return this._gameService.getDeckBuilderInfo(client);
+    try {
+      return this._gameService.getDeckBuilderInfo(client);
+    } catch  {
+      client.emit('error', 'Ошибка при получении наборов карт')
+      return { selectedCards: [], decks: {} }
+    }
+  }
+
+  @SubscribeMessage('cardsSelection')
+  async handleCardsSelectionMessage(client: Socket, selectedCardsInfo: SelectedPlayerCardInfo[]): Promise<void> {
+    try {
+      this._gameService.setPlayerSelectedCards(client, selectedCardsInfo);
+    } catch {
+      client.emit('error', 'Ошибка при формировании вашей колоды')
+    }
   }
 
   async handleDisconnect(): Promise<void> {

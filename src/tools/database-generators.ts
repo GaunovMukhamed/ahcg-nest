@@ -1,5 +1,5 @@
 import { Model } from "mongoose"
-import { CommonCard, KeeperCard, SeekerCard } from "src/modules/game/schemas/deck.shemas"
+import { CommonCard, DodgerCard, KeeperCard, SeekerCard } from "src/modules/game/schemas/deck.shemas"
 
 const addPlayerCardToBase = async(cardInfo: CommonCard, model: Model<CommonCard>, count: number = 1) => {
   for(let i = 1; i <= count; i++) {
@@ -480,5 +480,182 @@ export const addKeeperPlayerCardsToBase = async(model: Model<KeeperCard>) => {
     slot: 'accessory',
     attributes: ['mind', 'universal'],
     tags: ['доступ', 'предмет']
+  }, model, 1);
+}
+
+export const addDodgerPlayerCardsToBase = async(model: Model<DodgerCard>) => {
+  await addPlayerCardToBase({
+    id: 1,
+    name: 'Выкидной нож',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WGvCTPQNtpFhPtXd-jHg9tGh_M8REUcj&sz=w1000',
+    cost: 1,
+    level: 0,
+    slot: 'hand',
+    attributes: ['agility'],
+    tags: ['доступ', 'предмет', 'оружие', 'рукопашное', 'незаконный']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 2,
+    name: 'Дерринджер 41-го калибра',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1VpCgqwGMANku1dMi4nuzQ2KytTWjMdss&sz=w1000',
+    cost: 3,
+    level: 0,
+    slot: 'hand',
+    attributes: ['strength'],
+    tags: ['доступ', 'предмет', 'оружие', 'огнестрельное', 'незаконный']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 3,
+    name: 'Неуловимый',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WHshyj1gpug4Tph0kvAXbYKWugWOnM7E&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['intelligence', 'agility'],
+    tags: ['событие', 'тактика']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 4,
+    name: 'Карманная кража',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1VoPJbx3AIyp2cyIGkwBGWozLNxP3rhKj&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['agility'],
+    tags: ['доступ', 'умение', 'незаконный']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 5,
+    name: 'Жизненный опыт',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WA3A8jVBlPmDQT6Y_2Nt9XFpJohgHRzS&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['strength', 'agility'],
+    tags: ['доступ', 'умение']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 6,
+    name: 'Ограбление',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1W5gmnCRJNVre2YHjIXtoIlGylkB7JILV&sz=w1000',
+    cost: 1,
+    level: 0,
+    attributes: ['intelligence'],
+    tags: ['доступ', 'умение', 'незаконный']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 7,
+    name: 'Лео де Лука',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1Vhvt70-dxC_WU4HrqcrIa_186uuOPaZj&sz=w1000',
+    cost: 6,
+    level: 0,
+    slot: 'ally',
+    attributes: ['intelligence'],
+    tags: ['доступ', 'союзник', 'преступник']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 8,
+    name: 'Лео де Лука',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WJ1JiMtT4j-DoE-HbM0nHwn9DtuyTscS&sz=w1000',
+    cost: 5,
+    level: 1,
+    slot: 'ally',
+    health: 2,
+    mind: 2,
+    attributes: ['intelligence'],
+    tags: ['доступ', 'союзник', 'преступник']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 9,
+    name: 'Скрытая атака',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1W2EMZugMffRcoAbHbOWykWYi3-1m8thV&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['intelligence', 'strength'],
+    tags: ['событие', 'тактика']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 10,
+    name: 'Удар в спину',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1VnaqnkVOfMUHgh4lg0im3ULz4nuLmenB&sz=w1000',
+    cost: 3,
+    level: 0,
+    attributes: ['strength', 'agility'],
+    tags: ['событие', 'тактика']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 11,
+    name: 'Воспользоваться моментом',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WB0u1LY8O8_qbujEVo0NQ_7ABPF9Ej54&sz=w1000',
+    level: 0,
+    attributes: ['universal'],
+    tags: ['навык', 'прирожденный']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 12,
+    name: 'Ловкий трюк',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1VwHBUY_x7kr0l89SVjUt5wUiZBO5Q1UY&sz=w1000',
+    cost: 2,
+    level: 3,
+    tags: ['событие', 'фортуна', 'проницательность']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 13,
+    name: 'Ловкий грабитель',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1W3mqVPyLMEDn8WnSSMVA7CzmxRe_CCIs&sz=w1000',
+    cost: 4,
+    level: 1,
+    slot: 'ally',
+    health: 2,
+    mind: 2,
+    attributes: ["mind", "agility"],
+    tags: ['доступ', 'союзник', 'преступник']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 14,
+    name: 'Выигрышная комбинация',
+    type: 'dodger',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WJkK_t3eBbme8seU_DoYs4QeJ-kHer9Y&sz=w1000',
+    cost: 3,
+    level: 4,
+    attributes: ["universal"],
+    tags: ['событие', 'фортуна']
   }, model, 1);
 }

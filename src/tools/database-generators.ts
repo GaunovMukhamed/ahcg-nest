@@ -1,5 +1,5 @@
 import { Model } from "mongoose"
-import { CommonCard, DodgerCard, KeeperCard, SeekerCard } from "src/modules/game/schemas/deck.shemas"
+import { CommonCard, DodgerCard, KeeperCard, MysticCard, SeekerCard } from "src/modules/game/schemas/deck.shemas"
 
 const addPlayerCardToBase = async(cardInfo: CommonCard, model: Model<CommonCard>, count: number = 1) => {
   for(let i = 1; i <= count; i++) {
@@ -657,5 +657,181 @@ export const addDodgerPlayerCardsToBase = async(model: Model<DodgerCard>) => {
     level: 4,
     attributes: ["universal"],
     tags: ['событие', 'фортуна']
+  }, model, 1);
+}
+
+export const addMysticPlayerCardsToBase = async(model: Model<MysticCard>) => {
+  await addPlayerCardToBase({
+    id: 1,
+    name: 'Святые четки',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1XJTaq3EdtePPX4DRzfd9jMixYovfZyw5&sz=w1000',
+    cost: 2,
+    level: 0,
+    slot: 'accessory',
+    mind: 2,
+    attributes: ['mind'],
+    tags: ['доступ', 'предмет', 'оберег']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 2,
+    name: 'Запретное знание',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1X1Igsre0qyjpkQYoJBggLhazStU9vVMT&sz=w1000',
+    cost: 0,
+    level: 0,
+    attributes: ['intelligence'],
+    tags: ['доступ', 'умение']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 3,
+    name: 'Предсказание',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WxjMg_Jv1cWps_Ce3Jz6Jos_rttz5hHJ&sz=w1000',
+    cost: 1,
+    level: 0,
+    slot: 'magic',
+    attributes: ['intelligence'],
+    tags: ['доступ', 'заклинание']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 4,
+    name: 'Иссушение',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WroNdaxFvu_lywn3jL-1XJzj5_faXdAr&sz=w1000',
+    cost: 3,
+    level: 0,
+    slot: 'magic',
+    attributes: ['strength'],
+    tags: ['доступ', 'заклинание']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 5,
+    name: 'Магическая практика',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WrU5Bki2bpL0bQgulGAXvtGqur6X1Cne&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['mind', 'intelligence'],
+    tags: ['доступ', 'умение']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 6,
+    name: 'Защитный знак',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WwgP96LKyBvNkbBXMisbkOd2_ujf2mI6&sz=w1000',
+    cost: 1,
+    level: 0,
+    attributes: ['universal'],
+    tags: ['событие', 'заклинание', 'дух']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 7,
+    name: 'Ослепляющий свет',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WsgxV58u4CsIs-6O2WsZ-GXGmhv7wQ8d&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['mind', 'agility'],
+    tags: ['событие', 'заклинание']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 8,
+    name: 'Ослепляющий свет',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1XJMNLVwY7xYyvLsbYCk6u7sFCWHUKLnd&sz=w1000',
+    cost: 1,
+    level: 2,
+    attributes: ['mind', 'agility'],
+    tags: ['событие', 'заклинание']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 9,
+    name: 'Завороженный пламенем',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WvzX1KC4pjgyLKwBgdNxChwXSXmgZQve&sz=w1000',
+    cost: 0,
+    level: 0,
+    attributes: ['mind', 'intelligence'],
+    tags: ['событие', 'проницательность']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 10,
+    name: 'Бесстрашие',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1WuOjmyWOEkWd5NivHqmCdxdoJqggN3q9&sz=w1000',
+    level: 0,
+    attributes: ['mind'],
+    tags: ['навык', 'прирожденный']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 11,
+    name: 'Посвященная',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1XE8fyyh7SISlzAykLlXP55E_2KxPdkBX&sz=w1000',
+    cost: 1,
+    level: 0,
+    slot: 'dress',
+    attributes: ['mind'],
+    tags: ['доступ', 'союзник', 'колдун']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 12,
+    name: 'Стирание разума',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1XpGoGXnVA0DbUs0U5txDNpF4wZFMVYAX&sz=w1000',
+    cost: 1,
+    level: 1,
+    attributes: ['mind', 'strength'],
+    tags: ['событие', 'заклинание']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 13,
+    name: 'Книга теней',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1X803GEZ4WquAmPzMvwH848VCy0zZgztp&sz=w1000',
+    cost: 4,
+    level: 3,
+    slot: 'hand',
+    attributes: ['mind', 'intelligence'],
+    tags: ['доступ', 'предмет', 'книга']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 14,
+    name: 'Причудливая статуя',
+    type: 'mystic',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1Wu3DEXes2CqacXhtTsUSTPcDcCbWG2hl&sz=w1000',
+    cost: 2,
+    level: 4,
+    slot: 'hand',
+    attributes: ['universal'],
+    tags: ['доступ', 'предмет', 'реликвия']
   }, model, 1);
 }

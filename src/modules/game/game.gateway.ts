@@ -1,9 +1,8 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { GameService } from './game.service';
 import { Socket, Server } from "socket.io";
-import { CharacterDeckType, DeckBuilderInfo, GameState, Player, SelectedPlayerCardInfo } from './models';
+import { DeckBuilderInfo, GameState, Player, SelectedPlayerCardInfo } from './models';
 import { Scenario } from './schemas/scenario.schema';
-import { GameCard } from './schemas/game-card.schema';
 
 @WebSocketGateway(3002, { cors: true })
 export class GameGateway {

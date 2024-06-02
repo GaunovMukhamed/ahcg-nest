@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { CharacterAttributes, CharacterDeckType, PlayerCardTags, Slots } from '../models';
 
 export type UserDocument = HydratedDocument<GameCard>;
 
@@ -8,15 +9,23 @@ export class GameCard {
   @Prop({required: true})
   id: number;
   @Prop({required: true})
-  type: 'keeper';
+  name: string;
+  @Prop({required: true})
+  type: CharacterDeckType;
   @Prop({required: true})
   frontImg: string;
   @Prop({required: true})
   backImg: string;
-  @Prop()
+  @Prop({required: false})
   cost?: number;
   @Prop()
   level?: number;
+  @Prop()
+  slot?: Slots;
+  @Prop()
+  attributes?: CharacterAttributes[];
+  @Prop()
+  tags?: PlayerCardTags[];
 }
 
 export const GameCardSchema = SchemaFactory.createForClass(GameCard);

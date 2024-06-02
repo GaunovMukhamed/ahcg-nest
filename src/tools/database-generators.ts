@@ -1,5 +1,5 @@
 import { Model } from "mongoose"
-import { CommonCard, SeekerCard } from "src/modules/game/schemas/deck.shemas"
+import { CommonCard, KeeperCard, SeekerCard } from "src/modules/game/schemas/deck.shemas"
 
 const addPlayerCardToBase = async(cardInfo: CommonCard, model: Model<CommonCard>, count: number = 1) => {
   for(let i = 1; i <= count; i++) {
@@ -298,5 +298,187 @@ export const addSeekerPlayerCardsToBase = async(model: Model<SeekerCard>) => {
     attributes: ['universal'],
     slot: 'hand',
     tags: ['доступ', 'предмет', 'книга']
+  }, model, 1);
+}
+
+export const addKeeperPlayerCardsToBase = async(model: Model<KeeperCard>) => {
+  await addPlayerCardToBase({
+    id: 1,
+    name: 'Кольт 45-го калибра',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TWDGdWVTIoxDgPxKdQbn66ye5IsbXQmE&sz=w1000',
+    cost: 4,
+    level: 0,
+    slot: 'hand',
+    attributes: ['agility'],
+    tags: ['предмет', 'оружие', 'огнестрельное']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 2,
+    name: 'Физическая тренировка',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1Tlx0wwvuefnOHmdyJhkXfog7l4u7tk9R&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['mind', 'strength'],
+    tags: ['доступ', 'умение']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 3,
+    name: 'Мачете',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TYr1CjqGNzUkP8XZsmI4dxuBevCjAvFk&sz=w1000',
+    cost: 3,
+    level: 0,
+    slot: 'hand',
+    attributes: ['strength'],
+    tags: ['доступ', 'предмет', 'оружие', 'рукопашное']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 4,
+    name: 'Уклонение',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TmNSoGjbhF5JVSc3PR9N-vLv6SewiqZi&sz=w1000',
+    cost: 1,
+    level: 0,
+    attributes: ['mind', 'agility'],
+    tags: ['событие', 'тактика']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 5,
+    name: 'Первая помощь',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TlJjbniOR6pCAgW6Bd-qERjJuXy3RjYn&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['mind'],
+    tags: ['доступ', 'умение', 'наука']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 6,
+    name: 'Зацепка!',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1Tkz3EjF-Z6TCzzp8rX76a6cuC6IgWmaW&sz=w1000',
+    cost: 1,
+    level: 0,
+    attributes: ['intelligence', 'intelligence'],
+    tags: ['событие', 'проницательность']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 7,
+    name: 'Патрульный офицер',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TrX0KH2pd6UkT_4efWOPjwTAaUL6lnTx&sz=w1000',
+    cost: 4,
+    level: 0,
+    slot: 'ally',
+    health: 2,
+    mind: 2,
+    attributes: ['strength'],
+    tags: ['доступ', 'союзник', 'полиция']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 8,
+    name: 'Патрульный офицер',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1Tqs0Xx5eJ4uQm6eLSwVNXx9Eh4fPtTmL&sz=w1000',
+    cost: 4,
+    level: 2,
+    slot: 'ally',
+    health: 3,
+    mind: 2,
+    attributes: ['strength', 'agility'],
+    tags: ['доступ', 'союзник', 'полиция']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 9,
+    name: 'Сторожевой пес',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TpCjfsv4n-jNv31dM4cnVCAJbwUDVJS3&sz=w1000',
+    cost: 3,
+    level: 0,
+    slot: 'ally',
+    health: 3,
+    mind: 1,
+    attributes: ['strength'],
+    tags: ['доступ', 'союзник', 'существо']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 10,
+    name: 'Яростный удар',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1Tev46qlqZumpKZXBri3ulGzrY6ua1xb0&sz=w1000',
+    level: 0,
+    attributes: ['strength'],
+    tags: ['навык', 'тренированный']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 11,
+    name: 'Взрыв динамита',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TkAKLSeoJ4iQ-wpEx4YWvleQsEMbufBb&sz=w1000',
+    cost: 5,
+    level: 0,
+    attributes: ['mind'],
+    tags: ['событие', 'тактика']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 12,
+    name: 'Дополнительные боеприпасы',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TiMZEYs5O7kQfdWe1MygdO6ABw87kN9-&sz=w1000',
+    cost: 2,
+    level: 1,
+    attributes: ['intelligence'],
+    tags: ['событие', 'запас']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 13,
+    name: 'Дробовик',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TTY8yS7N_tc0wL0AiFL_CEWSMzdbMe_1&sz=w1000',
+    cost: 5,
+    level: 4,
+    slot: 'two-hand',
+    attributes: ['strength', 'strength'],
+    tags: ['доступ', 'предмет', 'оружие', 'огнестрельное']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 14,
+    name: 'Полицеский жетон',
+    type: 'keeper',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1TapXB7Me5QcloLvyDYxqHybi2KznTn-O&sz=w1000',
+    cost: 3,
+    level: 2,
+    slot: 'accessory',
+    attributes: ['mind', 'universal'],
+    tags: ['доступ', 'предмет']
   }, model, 1);
 }

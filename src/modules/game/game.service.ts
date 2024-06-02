@@ -8,7 +8,7 @@ import { Socket, Server } from "socket.io";
 import { GameCard } from './schemas/game-card.schema';
 import { Scenario } from './schemas/scenario.schema';
 import { CommonCard, DodgerCard, KeeperCard, MysticCard, SeekerCard, SurvivorCard } from './schemas/deck.shemas';
-import { addCommonPlayerCardsToBase, addSeekerPlayerCardsToBase } from 'src/tools/database-generators';
+import { addCommonPlayerCardsToBase, addKeeperPlayerCardsToBase, addSeekerPlayerCardsToBase } from 'src/tools/database-generators';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class GameService {
@@ -36,6 +36,7 @@ export class GameService {
   private async _generateBase(): Promise<void> {
     if((await this._commonCardModel.find({}).exec()).length === 0) await addCommonPlayerCardsToBase(this._commonCardModel);
     if((await this._seekerCardModel.find({}).exec()).length === 0) await addSeekerPlayerCardsToBase(this._seekerCardModel);
+    if((await this._keeperCardModel.find({}).exec()).length === 0) await addKeeperPlayerCardsToBase(this._keeperCardModel);
 
   }
 

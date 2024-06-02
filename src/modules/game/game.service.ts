@@ -91,6 +91,9 @@ export class GameService {
           case 1:
             this.gameState = 2;
             break;
+          case 2:
+            this.gameState = 3;
+            break;
         }
        
       }

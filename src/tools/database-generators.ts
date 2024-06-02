@@ -1,5 +1,5 @@
 import { Model } from "mongoose"
-import { CommonCard, DodgerCard, KeeperCard, MysticCard, SeekerCard } from "src/modules/game/schemas/deck.shemas"
+import { CommonCard, DodgerCard, KeeperCard, MysticCard, SeekerCard, SurvivorCard } from "src/modules/game/schemas/deck.shemas"
 
 const addPlayerCardToBase = async(cardInfo: CommonCard, model: Model<CommonCard>, count: number = 1) => {
   for(let i = 1; i <= count; i++) {
@@ -833,5 +833,182 @@ export const addMysticPlayerCardsToBase = async(model: Model<MysticCard>) => {
     slot: 'hand',
     attributes: ['universal'],
     tags: ['доступ', 'предмет', 'реликвия']
+  }, model, 1);
+}
+
+export const addSurvivorPlayerCardsToBase = async(model: Model<SurvivorCard>) => {
+  await addPlayerCardToBase({
+    id: 1,
+    name: 'Бейсбольная бита',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_5v8heKB2B0sEVEzrSLo3I-dN8JEgDI6&sz=w1000',
+    cost: 2,
+    level: 0,
+    slot: 'two-hand',
+    attributes: ['strength'],
+    tags: ['доступ', 'предмет', 'оружие', 'рукопашное']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 2,
+    name: 'Скрытый потенциал',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_6wmjvwaMCeB6bZXfuy2dxdd84CS9XgS&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['mind', 'agility'],
+    tags: ['доступ', 'умение']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 3,
+    name: 'Подручные средства',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_Gw_-Gv4uTvhXxdcJNINqoM6UI6NXN3Y&sz=w1000',
+    cost: 1,
+    level: 0,
+    attributes: ['intelligence'],
+    tags: ['доступ', 'умение']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 4,
+    name: 'Подручные средства',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_NfYdbOtuGMocVR-vCNI7rCYhOZT52RE&sz=w1000',
+    cost: 1,
+    level: 0,
+    slot: 'ally',
+    health: 1,
+    attributes: ['agility'],
+    tags: ['доступ', 'умение']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 5,
+    name: 'Кожаное пальто',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_KIA57UHjgr1j6ev9rppXgaJU3Uts193&sz=w1000',
+    cost: 0,
+    level: 0,
+    slot: 'dress',
+    health: 2,
+    attributes: ['strength'],
+    tags: ['доступ', 'предмет', 'броня']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 6,
+    name: 'Кроличья лапка',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_5djeDTHkZ4OtUn_ET0YD_7RzR7ykzq9&sz=w1000',
+    cost: 1,
+    level: 0,
+    slot: 'accessory',
+    attributes: ['universal'],
+    tags: ['доступ', 'предмет', 'оберег']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 7,
+    name: 'Смотри, что я нашел!',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_MT-_X19sD8PO5uZDMvvNl5mv5oMlEbQ&sz=w1000',
+    cost: 2,
+    level: 0,
+    attributes: ['intelligence', 'intelligence'],
+    tags: ['событие', 'фортуна']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 8,
+    name: 'Отвлекающий маневр',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_4Umvxo0j8wIzi9N3wEPwPaCeXbOyfZ4&sz=w1000',
+    cost: 5,
+    level: 0,
+    attributes: ['mind', 'universal'],
+    tags: ['событие', 'тактика']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 9,
+    name: 'Повезло!',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_CUSTn11budvBOXmg0Up-IWmQVVnKHCg&sz=w1000',
+    cost: 1,
+    level: 0,
+    tags: ['событие', 'фортуна']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 10,
+    name: 'Повезло!',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_PEe1al4wABDiODgdYuL9uTobH_Horhq&sz=w1000',
+    cost: 1,
+    level: 2,
+    tags: ['событие', 'фортуна']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 11,
+    name: 'Инстинкт выживания',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_MDeDpH8xzQDytob-Dt3Yb3yYV1PMQTf&sz=w1000',
+    cost: 0,
+    level: 0,
+    attributes: ['agility'],
+    tags: ['навык', 'прирожденный']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 12,
+    name: 'В последний момент',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_4g27wxhe1jr15moSnHU_njOOqEFz8A2&sz=w1000',
+    cost: 2,
+    level: 2,
+    attributes: ['strength', 'agility'],
+    tags: ['событие', 'фортуна']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 13,
+    name: 'Аквинна',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_GPri3tP05emq8nBfILFK6TlfJOMV4_v&sz=w1000',
+    cost: 5,
+    level: 1,
+    slot: 'ally',
+    health: 1,
+    mind: 4,
+    attributes: ['mind'],
+    tags: ['доступ', 'союзник']
+  }, model, 1);
+
+  await addPlayerCardToBase({
+    id: 14,
+    name: 'Желание выжить',
+    type: 'survivor',
+    backImg: 'https://drive.google.com/thumbnail?id=1VDYXcXVPajHRu2miFlbDxUf2Ka-6aHtM&sz=w1000',
+    frontImg: 'https://drive.google.com/thumbnail?id=1_LaVFsx2Pnm1HYDBJ9o-9OSDJjUhprEY&sz=w1000',
+    cost: 4,
+    level: 3,
+    attributes: ['strength', 'universal'],
+    tags: ['событие', 'дух']
   }, model, 1);
 }

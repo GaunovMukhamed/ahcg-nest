@@ -26,6 +26,10 @@ export class GameCard {
   attributes?: CharacterAttributes[];
   @Prop()
   tags?: PlayerCardTags[];
+  @Prop()
+  health?: number;
+  @Prop()
+  mind?: number;
 }
 
 export const GameCardSchema = SchemaFactory.createForClass(GameCard);

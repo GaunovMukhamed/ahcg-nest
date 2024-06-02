@@ -33,11 +33,13 @@ export interface SelectedPlayerCardInfo {
   type: CharacterDeckType
 }
 
-export type Slots = 'hand'|'body'|'amulet';
+export type Slots = 'accessory'|'dress'|'hand'|'magic'|'ally'|'two-hand'|'two-magic';
 
 export type CharacterAttributes = 'mind'|'agility'|'intelligence'|'strength'|'will'|'universal';
 
 export type PlayerCardTags = 
   'доступ'|'предмет'|'оружие'|'рукопашное'|
   'инструмент'|'событие'|'запас'|'навык'|
-  'прирожденный'|'приобретенный'|'реликвия'|'броня';
+  'прирожденный'|'приобретенный'|'реликвия'|'броня'|
+  'союзник'|'мискатоник'|'книга'|'умение'|
+  'проницательность'|'тактика'|'тренированный';

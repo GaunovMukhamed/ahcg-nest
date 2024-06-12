@@ -21,7 +21,7 @@ export class Player {
   allDecks: {[key in CharacterDeckType]?: GameCard[]} = { common: [] };
 }
 
-export type CharacterDeckType = 'common'|'keeper'|'seeker'|'mystic'|'survivor'|'dodger';
+export type CharacterDeckType = 'common'|'keeper'|'seeker'|'mystic'|'survivor'|'dodger'|'special';
 
 export type DeckBuilderInfo = {
   selectedCards: GameCard[];
@@ -45,4 +45,13 @@ export type PlayerCardTags =
   'проницательность'|'тактика'|'тренированный'|'огнестрельное'|
   'наука'|'полиция'|'существо'|'незаконный'|
   'преступник'|'фортуна'|'оберег'|'заклинание'|
-  'дух'|'колдун';
+  'дух'|'колдун'|'гуманоид'|'культист'|
+  'монстр'|'упырь'|'элитный'|'охотник'|
+  'мстительный'|'древний'|'большой';
+
+export interface Act {
+  name: string;
+  actMemo: GameCard;
+  contacts: GameCard[];
+  locations: GameCard[];
+}

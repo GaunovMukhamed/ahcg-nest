@@ -1,5 +1,7 @@
 import { Model } from "mongoose"
+import { Character } from "src/modules/game/schemas/character.schema";
 import { CommonCard, DodgerCard, KeeperCard, MysticCard, SeekerCard, SurvivorCard } from "src/modules/game/schemas/deck.shemas"
+import { Scenario } from "src/modules/game/schemas/scenario.schema";
 
 const addPlayerCardToBase = async(cardInfo: CommonCard, model: Model<CommonCard>, count: number = 1) => {
   for(let i = 1; i <= count; i++) {
@@ -10,7 +12,82 @@ const addPlayerCardToBase = async(cardInfo: CommonCard, model: Model<CommonCard>
   }
 }
 
+export const addCharactersToBase = async(model: Model<Character>) => {
+  await model.collection.deleteMany({});
+  await model.create({
+    id: 0,
+    name: 'Роланд Бэнкс',
+    health: '9',
+    mind: 5,
+    agility: 2,
+    intelligence: 3,
+    strength: 4,
+    will: 3,
+    frontImg: 'https://drive.google.com/thumbnail?id=1RXL0elNmxVOlZnN_QqaVyD5q7w81oFd6&sz=w1000',
+    backImg: 'https://drive.google.com/thumbnail?id=1RczOoD93Nirpbs6PMXC1N1GRQ8WFBfns&sz=w1000',
+    miniImg: 'https://drive.google.com/thumbnail?id=1Rs9Lts4YRKvi4MzcZYO2n8sTS5TfZZ1u&sz=w1000',
+    deckTypes: ['keeper', 'seeker', 'common']
+  });
+  await model.create({
+    id: 2,
+    name: 'Дэйзи Уокер',
+    health: '5',
+    mind: 9,
+    agility: 2,
+    intelligence: 5,
+    strength: 2,
+    will: 3,
+    frontImg: 'https://drive.google.com/thumbnail?id=1RTzbbsDJ6oqHoP7QRqnIdIXu3OIcH4Fb&sz=w1000',
+    backImg: 'https://drive.google.com/thumbnail?id=1RM4nuB14pvPVMvMs0jGDj8_enl6r8GM9&sz=w1000',
+    miniImg: 'https://drive.google.com/thumbnail?id=1Rj_bM1kFmCBTtIEKIFUyKYxQH1Nkyf3s&sz=w1000',
+    deckTypes: ['seeker', 'mystic', 'common']
+  });
+  await model.create({
+    id: 3,
+    name: '"Скользский" О`Тул',
+    health: '8',
+    mind: 6,
+    agility: 4,
+    intelligence: 3,
+    strength: 3,
+    will: 2,
+    frontImg: 'https://drive.google.com/thumbnail?id=1RPkJEnS7VQLN07Vm9OpcWdu3KPZT47Tu&sz=w1000',
+    backImg: 'https://drive.google.com/thumbnail?id=1RS8Ykqxt7TkcRKIvSN3BIc8VxGx5UM3f&sz=w1000',
+    miniImg: 'https://drive.google.com/thumbnail?id=1RfUhxuWc10IHQKJ-XTzXOKFEjEXNgn06&sz=w1000',
+    deckTypes: ['dodger', 'keeper', 'common']
+  });
+  await model.create({
+    id: 4,
+    name: 'Агнес Бейкер',
+    health: '6',
+    mind: 8,
+    agility: 3,
+    intelligence: 2,
+    strength: 2,
+    will: 5,
+    frontImg: 'https://drive.google.com/thumbnail?id=1RboOmclrc_psUkxT-L9Q4RYn9iGN7P8O&sz=w1000',
+    backImg: 'https://drive.google.com/thumbnail?id=1RYlhcTi-DJcgOfFzA4TqLVpad83wRxoK&sz=w1000',
+    miniImg: 'https://drive.google.com/thumbnail?id=1RtPEtjfr1HvbMFo6EvPL-w20KnMfodZ5&sz=w1000',
+    deckTypes: ['mystic', 'survivor', 'common']
+  });
+  await model.create({
+    id: 5,
+    name: 'Венди Адамс',
+    health: '7',
+    mind: 7,
+    agility: 4,
+    intelligence: 3,
+    strength: 1,
+    will: 4,
+    frontImg: 'https://drive.google.com/thumbnail?id=1RTeU-lW1MbVs3EkrrntsrhWfv9iPfURR&sz=w1000',
+    backImg: 'https://drive.google.com/thumbnail?id=1RKLaE1XXtlmOTXkthgWNLI1NHaxnNFZZ&sz=w1000',
+    miniImg: 'https://drive.google.com/thumbnail?id=1RjoT9Pd6W_GPzY6GRJHi999osiB0GF8V&sz=w1000',
+    deckTypes: ['mystic', 'survivor', 'common']
+  });
+}
+
 export const addCommonPlayerCardsToBase = async(model: Model<CommonCard>) => {
+  await model.collection.deleteMany({});
   await addPlayerCardToBase({
     id: 1,
     name: 'Нож',
@@ -126,6 +203,7 @@ export const addCommonPlayerCardsToBase = async(model: Model<CommonCard>) => {
 }
 
 export const addSeekerPlayerCardsToBase = async(model: Model<SeekerCard>) => {
+  await model.collection.deleteMany({});
   await addPlayerCardToBase({
     id: 1,
     name: 'Библиотекарь-исследователь',
@@ -302,6 +380,7 @@ export const addSeekerPlayerCardsToBase = async(model: Model<SeekerCard>) => {
 }
 
 export const addKeeperPlayerCardsToBase = async(model: Model<KeeperCard>) => {
+  await model.collection.deleteMany({});
   await addPlayerCardToBase({
     id: 1,
     name: 'Кольт 45-го калибра',
@@ -385,7 +464,7 @@ export const addKeeperPlayerCardsToBase = async(model: Model<KeeperCard>) => {
     cost: 4,
     level: 0,
     slot: 'ally',
-    health: 2,
+    health: '2',
     mind: 2,
     attributes: ['strength'],
     tags: ['доступ', 'союзник', 'полиция']
@@ -400,7 +479,7 @@ export const addKeeperPlayerCardsToBase = async(model: Model<KeeperCard>) => {
     cost: 4,
     level: 2,
     slot: 'ally',
-    health: 3,
+    health: '3',
     mind: 2,
     attributes: ['strength', 'agility'],
     tags: ['доступ', 'союзник', 'полиция']
@@ -415,7 +494,7 @@ export const addKeeperPlayerCardsToBase = async(model: Model<KeeperCard>) => {
     cost: 3,
     level: 0,
     slot: 'ally',
-    health: 3,
+    health: '3',
     mind: 1,
     attributes: ['strength'],
     tags: ['доступ', 'союзник', 'существо']
@@ -484,6 +563,7 @@ export const addKeeperPlayerCardsToBase = async(model: Model<KeeperCard>) => {
 }
 
 export const addDodgerPlayerCardsToBase = async(model: Model<DodgerCard>) => {
+  await model.collection.deleteMany({});
   await addPlayerCardToBase({
     id: 1,
     name: 'Выкидной нож',
@@ -580,7 +660,7 @@ export const addDodgerPlayerCardsToBase = async(model: Model<DodgerCard>) => {
     cost: 5,
     level: 1,
     slot: 'ally',
-    health: 2,
+    health: '2',
     mind: 2,
     attributes: ['intelligence'],
     tags: ['доступ', 'союзник', 'преступник']
@@ -641,7 +721,7 @@ export const addDodgerPlayerCardsToBase = async(model: Model<DodgerCard>) => {
     cost: 4,
     level: 1,
     slot: 'ally',
-    health: 2,
+    health: '2',
     mind: 2,
     attributes: ["mind", "agility"],
     tags: ['доступ', 'союзник', 'преступник']
@@ -661,6 +741,7 @@ export const addDodgerPlayerCardsToBase = async(model: Model<DodgerCard>) => {
 }
 
 export const addMysticPlayerCardsToBase = async(model: Model<MysticCard>) => {
+  await model.collection.deleteMany({});
   await addPlayerCardToBase({
     id: 1,
     name: 'Святые четки',
@@ -837,6 +918,7 @@ export const addMysticPlayerCardsToBase = async(model: Model<MysticCard>) => {
 }
 
 export const addSurvivorPlayerCardsToBase = async(model: Model<SurvivorCard>) => {
+  await model.collection.deleteMany({});
   await addPlayerCardToBase({
     id: 1,
     name: 'Бейсбольная бита',
@@ -883,7 +965,7 @@ export const addSurvivorPlayerCardsToBase = async(model: Model<SurvivorCard>) =>
     cost: 1,
     level: 0,
     slot: 'ally',
-    health: 1,
+    health: '1',
     attributes: ['agility'],
     tags: ['доступ', 'умение']
   }, model, 1);
@@ -897,7 +979,7 @@ export const addSurvivorPlayerCardsToBase = async(model: Model<SurvivorCard>) =>
     cost: 0,
     level: 0,
     slot: 'dress',
-    health: 2,
+    health: '2',
     attributes: ['strength'],
     tags: ['доступ', 'предмет', 'броня']
   }, model, 1);
@@ -994,7 +1076,7 @@ export const addSurvivorPlayerCardsToBase = async(model: Model<SurvivorCard>) =>
     cost: 5,
     level: 1,
     slot: 'ally',
-    health: 1,
+    health: '1',
     mind: 4,
     attributes: ['mind'],
     tags: ['доступ', 'союзник']
@@ -1011,4 +1093,135 @@ export const addSurvivorPlayerCardsToBase = async(model: Model<SurvivorCard>) =>
     attributes: ['strength', 'universal'],
     tags: ['событие', 'дух']
   }, model, 1);
+}
+
+export const addScenariosToBase = async(model: Model<Scenario>) => {
+  await model.collection.deleteMany({});
+  await model.create(
+    {
+      id: 1,
+      name: 'Ночь фанатички',
+      acts: [],
+      specialCards: [
+        {
+          id: 1,
+          name: 'Умордхот',
+          type: 'special',
+          frontImg: 'https://drive.google.com/thumbnail?id=1hpt-gh9T6e_IGfM-_Jg26o6pK3hVOHM4&sz=w1000',
+          backImg: 'https://drive.google.com/thumbnail?id=1_QtpIiopWLAHvUiK8akF5dit09-68pGf&sz=w1000',
+          tags: ['древний', 'элитный', 'охотник', 'большой'],
+          isEnemy: true,
+          healthDamage: 3,
+          mindDamage: 3,
+          fight: 5,
+          health: '6+4*players',
+          escape: 6
+        },
+        {
+          id: 2,
+          name: 'Лита Чантлер',
+          type: 'special',
+          frontImg: 'https://drive.google.com/thumbnail?id=1dCHArzemSPIzM2WrkzOYt3rURiebxBZM&sz=w1000',
+          backImg: 'https://drive.google.com/thumbnail?id=1ZrvUlL2Z70l-qL_RbrmBnsFSWZSnh91g&sz=w1000',
+          cost: 0,
+          level: 0,
+          slot: 'ally',
+          tags: ['союзник'],
+          health: '3',
+          mind: 3
+        },
+        {
+          id: 3,
+          name: '"Человек-волк" Дрю',
+          type: 'special',
+          frontImg: 'https://drive.google.com/thumbnail?id=1hwfLsWM8EeFtBz3bScMH4mFjzW-SOHMo&sz=w1000',
+          backImg: 'https://drive.google.com/thumbnail?id=1_QtpIiopWLAHvUiK8akF5dit09-68pGf&sz=w1000',
+          tags: ['гуманоид', 'культист'],
+          isEnemy: true,
+          appear: 'Даунтаун',
+          winPoints: 1,
+          healthDamage: 2,
+          fight: 4,
+          health: '4',
+          escape: 2
+        },
+        {
+          id: 4,
+          name: 'Герман Коллинс',
+          type: 'special',
+          frontImg: 'https://drive.google.com/thumbnail?id=1i1JhuW0AB-RGkV7Hry6HhQvXvrrJo_gW&sz=w1000',
+          backImg: 'https://drive.google.com/thumbnail?id=1_QtpIiopWLAHvUiK8akF5dit09-68pGf&sz=w1000',
+          tags: ['гуманоид', 'культист'],
+          isEnemy: true,
+          appear: 'Кладбище',
+          winPoints: 1,
+          healthDamage: 1,
+          mindDamage: 1,
+          fight: 3,
+          health: '4',
+          escape: 4
+        },
+        {
+          id: 5,
+          name: 'Упырь-жрец',
+          type: 'special',
+          frontImg: 'https://drive.google.com/thumbnail?id=1hqvfthrUMyJyYKOGm4UF1rq3-pMSA0sq&sz=w1000',
+          backImg: 'https://drive.google.com/thumbnail?id=1_QtpIiopWLAHvUiK8akF5dit09-68pGf&sz=w1000',
+          tags: ['гуманоид', 'монстр',  'упырь', 'элитный', 'охотник', 'мстительный'],
+          isEnemy: true,
+          appear: 'сильнейший',
+          winPoints: 2,
+          healthDamage: 2,
+          mindDamage: 2,
+          fight: 4,
+          health: '5*players',
+          escape: 4
+        },
+        {
+          id: 6,
+          name: 'Питер Варрен',
+          type: 'special',
+          frontImg: 'https://drive.google.com/thumbnail?id=1htpnXWLDHj1d3yIFVy1FisaGjdaOExqD&sz=w1000',
+          backImg: 'https://drive.google.com/thumbnail?id=1_QtpIiopWLAHvUiK8akF5dit09-68pGf&sz=w1000',
+          tags: ['гуманоид', 'культист', 'мискатоник'],
+          isEnemy: true,
+          appear: 'Мискатоникский университет',
+          winPoints: 1,
+          healthDamage: 1,
+          fight: 2,
+          health: '3',
+          escape: 3
+        },
+        {
+          id: 7,
+          name: 'Рут Тёрнер',
+          type: 'special',
+          frontImg: 'https://drive.google.com/thumbnail?id=1hwd7S6-4vMEWtVSWoXPtm8lXdecVL9Yd&sz=w1000',
+          backImg: 'https://drive.google.com/thumbnail?id=1_QtpIiopWLAHvUiK8akF5dit09-68pGf&sz=w1000',
+          tags: ['гуманоид', 'культист'],
+          isEnemy: true,
+          appear: 'Больница Св. Марии',
+          winPoints: 1,
+          healthDamage: 1,
+          fight: 2,
+          health: '4',
+          escape: 5
+        },
+        {
+          id: 8,
+          name: 'Виктория Деверо',
+          type: 'special',
+          frontImg: 'https://drive.google.com/thumbnail?id=1i-zwu7__Y0_Oci8S-RNI1I5LFNEeUGPF&sz=w1000',
+          backImg: 'https://drive.google.com/thumbnail?id=1_QtpIiopWLAHvUiK8akF5dit09-68pGf&sz=w1000',
+          tags: ['гуманоид', 'культист'],
+          isEnemy: true,
+          appear: 'Нортсайд',
+          healthDamage: 1,
+          fight: 3,
+          health: '3',
+          escape: 2
+        },
+      ]
+    }
+  );
 }

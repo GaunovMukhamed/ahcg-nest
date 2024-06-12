@@ -27,9 +27,25 @@ export class GameCard {
   @Prop()
   tags?: PlayerCardTags[];
   @Prop()
-  health?: number;
+  health?: string; // '4' или '4*players' или '6+4*players'
   @Prop()
   mind?: number;
+  @Prop()
+  winPoints?: number;
+  //enemy attrs
+  @Prop()
+  isEnemy?: boolean;
+  @Prop()
+  appear?: string;
+  @Prop()
+  healthDamage?: number;
+  @Prop()
+  mindDamage?: number;
+  @Prop()
+  fight?: number;
+  @Prop()
+  escape?: number;
+  ///
 }
 
 export const GameCardSchema = SchemaFactory.createForClass(GameCard);

@@ -8,7 +8,7 @@ import { Socket, Server } from "socket.io";
 import { GameCard } from './schemas/game-card.schema';
 import { Scenario } from './schemas/scenario.schema';
 import { CommonCard, DodgerCard, KeeperCard, MysticCard, SeekerCard, SurvivorCard } from './schemas/deck.shemas';
-import { addCommonPlayerCardsToBase, addDodgerPlayerCardsToBase, addKeeperPlayerCardsToBase, addMysticPlayerCardsToBase, addSeekerPlayerCardsToBase, addSurvivorPlayerCardsToBase } from 'src/tools/database-generators';
+import { addCharactersToBase, addCommonPlayerCardsToBase, addDodgerPlayerCardsToBase, addKeeperPlayerCardsToBase, addMysticPlayerCardsToBase, addScenariosToBase, addSeekerPlayerCardsToBase, addSurvivorPlayerCardsToBase } from 'src/tools/database-generators';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class GameService {
@@ -34,14 +34,16 @@ export class GameService {
   characterTypeDecks: Map<CharacterDeckType, GameCard[]> = new Map();
 
   private async _generateBase(): Promise<void> {
-    if((await this._commonCardModel.find({}).exec()).length === 0) await addCommonPlayerCardsToBase(this._commonCardModel);
-    if((await this._seekerCardModel.find({}).exec()).length === 0) await addSeekerPlayerCardsToBase(this._seekerCardModel);
-    if((await this._keeperCardModel.find({}).exec()).length === 0) await addKeeperPlayerCardsToBase(this._keeperCardModel);
-    if((await this._dodgerCardModel.find({}).exec()).length === 0) await addDodgerPlayerCardsToBase(this._dodgerCardModel);
-    if((await this._mysticCardModel.find({}).exec()).length === 0) await addMysticPlayerCardsToBase(this._mysticCardModel);
-    if((await this._survivorCardModel.find({}).exec()).length === 0) await addSurvivorPlayerCardsToBase(this._survivorCardModel);
-
-
+    if(true) {
+      await addCharactersToBase(this._characterModel);
+      await addCommonPlayerCardsToBase(this._commonCardModel);
+      await addSeekerPlayerCardsToBase(this._seekerCardModel);
+      await addKeeperPlayerCardsToBase(this._keeperCardModel);
+      await addDodgerPlayerCardsToBase(this._dodgerCardModel);
+      await addMysticPlayerCardsToBase(this._mysticCardModel);
+      await addSurvivorPlayerCardsToBase(this._survivorCardModel);
+      await addScenariosToBase(this._scenarioModel);
+    }
   }
 
   async getGameState(login: string, force: boolean = false): Promise<GameState> {

@@ -52,6 +52,28 @@ export type PlayerCardTags =
 export interface Act {
   name: string;
   actMemo: GameCard;
-  contacts: GameCard[];
-  locations: GameCard[];
+  contacts: ContactTypes[];
+  locations: LocationCard[];
+  plans: PlanCard[];
+  scenes: SceneCard[];
+}
+
+export type ContactTypes = 
+  'agents'|'ancient-evil'|'dark-cult'|'depth-devourer'|
+  'ghoules'|'gripped-by-fear'|'locked-doors'|'meet'|
+  'midnight-masks'|'night-ghosts'|'piercing-cold'|'rats';
+
+export interface LocationCard extends GameCard {
+  clues: string;
+  pack?: LocationCard[];
+  copies: number;
+  ambiguity: number;
+}
+
+export interface PlanCard extends GameCard {
+  despair: number;
+}
+
+export interface SceneCard extends GameCard {
+  clues: string;
 }

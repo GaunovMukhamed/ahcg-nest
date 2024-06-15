@@ -1101,7 +1101,380 @@ export const addScenariosToBase = async(model: Model<Scenario>) => {
     {
       id: 1,
       name: 'Ночь фанатички',
-      acts: [],
+      acts: [
+        {
+          id: 1,
+          name: 'Встреча',
+          actMemo: {
+            frontImg: 'https://drive.google.com/thumbnail?id=1bmIpxfvrNephpq_mxs60SRdSaOXuvw8z&sz=w1000',
+            backImg: 'https://drive.google.com/thumbnail?id=1c3p0Hl4pGtmz4L0uyNEIP3-x6rj2ps7m&sz=w1000'
+          },
+          contacts: ['meet', 'rats', 'ghoules', 'gripped-by-fear', 'ancient-evil', 'piercing-cold'],
+          locations: [
+            {
+              id: 1,
+              name: 'Прихожая',
+              frontImg: 'https://drive.google.com/thumbnail?id=1iNtCQwHijtCXnuEh-x1ZYaZLwdFMBiRA&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1iFhFLnGGwKwuUtqb_BLK9mFtygTnNoOK&sz=w1000',
+              ambiguity: 1,
+              clues: '0'
+            },
+            {
+              id: 2,
+              name: 'Гостиная',
+              frontImg: 'https://drive.google.com/thumbnail?id=1iNV6p98Ith4SeIDMMIbzkKtTi4U_l7A1&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1iYGr24NaohNJO3xEo_B0W6QjPcUMpseX&sz=w1000',
+              ambiguity: 2,
+              clues: '0'
+            },
+            {
+              id: 3,
+              name: 'Кабинет',
+              frontImg: 'https://drive.google.com/thumbnail?id=1iHC6MkzDVZBz7G9UFzUGy3ZNYNjRg-G4&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1iH3-HNEDZjSt9CgZ4FEW-wvmO2tdQ23Y&sz=w1000',
+              ambiguity: 2,
+              clues: '2*players'
+            },
+            {
+              id: 4,
+              name: 'Чердак',
+              frontImg: 'https://drive.google.com/thumbnail?id=1iXD7Fbt9ReOTUfIdj1iLQ3CXbP_id-9h&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1iO4sUqHyWBCykEII__UWHmKKk7GYEnY6&sz=w1000',
+              ambiguity: 1,
+              clues: '2*players',
+              winPoints: 1
+            },
+            {
+              id: 5,
+              name: 'Подвал',
+              frontImg: 'https://drive.google.com/thumbnail?id=1i_E6uNykAKk4oVvAmGnCy6lddZqDSihS&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1iUOlZch1sc_0p9r6thZF5_aUCyDeHlt6&sz=w1000',
+              ambiguity: 4,
+              clues: '2*players',
+              winPoints: 1
+            }
+          ],
+          plans: [
+            {
+              id: 1,
+              name: 'Глава 1',
+              frontImg: 'https://drive.google.com/thumbnail?id=1j2jlEE27ngL-JvGDml6udlyz7_E8qzM2&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1j5hj6ljvFr-VV2p3h5mN4h4ghAVK0EOO&sz=w1000',
+              despair: 3
+            },
+            {
+              id: 2,
+              name: 'Глава 2',
+              frontImg: 'https://drive.google.com/thumbnail?id=1j0EvlfQewvD6kUma3nvawNtqipTK98af&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1ipqH0Cv9mz74sCfH3p8tDO8dbn0BXUKd&sz=w1000',
+              despair: 7
+            },
+            {
+              id: 3,
+              name: 'Глава 3',
+              frontImg: 'https://drive.google.com/thumbnail?id=1j2SLsSj-3R2WF0IVe6eEf0fxMakTKnRC&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1islZVDnQe6pdXszHfkK7iWUNUd4TFk91&sz=w1000',
+              despair: 10
+            },
+          ],
+          scenes: [
+            {
+              id: 1,
+              name: 'Акт 1',
+              frontImg: 'https://drive.google.com/thumbnail?id=1idYZFP6P596Y3zP2ScrvpOWa5lW_zs5B&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1ivP2QF6KEHNI2LiIvmhiLKaJSl96XyKm&sz=w1000',
+              clues: '2*players'
+            },
+            {
+              id: 2,
+              name: 'Акт 2',
+              frontImg: 'https://drive.google.com/thumbnail?id=1iqIZCDv44H3bRiL8nC6afj0tMOBiN5qz&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1ifegPdCddxmnI1OGr3rUVhBRGPqatxXM&sz=w1000',
+              clues: '3*players'
+            },
+            {
+              id: 3,
+              name: 'Акт 3',
+              frontImg: 'https://drive.google.com/thumbnail?id=1iyxlmgMIDTs_PkC9VKGFNW-ULO240lEW&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1iebJTOaV91-_MnboM0TxadBy5iJWd1lI&sz=w1000',
+              clues: ''
+            },
+          ]
+        },
+        {
+          id: 2,
+          name: 'Полуночные маски',
+          actMemo: {
+            frontImg: 'https://drive.google.com/thumbnail?id=1STxF3MbGdZoQ26mQlnbucxTabCSIO824&sz=w1000',
+            backImg: 'https://drive.google.com/thumbnail?id=1SPaygm7iz7nuN1Yct4w453T8fZAxK513&sz=w1000'
+          },
+          contacts: ['midnight-masks', 'piercing-cold', 'night-ghosts', 'dark-cult', 'locked-doors'],
+          locations: [
+            {
+              id: 1,
+              name: 'Ваш дом',
+              frontImg: 'https://drive.google.com/thumbnail?id=1jYz_moV-eEGR2aMXJMJQzueEgYwn-Zaz&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1jAefJLdfU-GZdok14CUQ0e6D2FTzS6OP&sz=w1000',
+              ambiguity: 2,
+              clues: '1*players'
+            },
+            {
+              id: 2,
+              name: 'Саутсайд',
+              pack: [
+                {
+                  id: 2,
+                  name: 'Саутсайд',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1jpSs5M8F9hRDKmp1F-N5KIvfLBFfeVsN&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1je0Rshisg0PvzmDBSQO0JWvVvHFnsmD5&sz=w1000',
+                  ambiguity: 3,
+                  clues: '1*players'
+                }, 
+                {
+                  id: 3,
+                  name: 'Саутсайд',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1jpSs5M8F9hRDKmp1F-N5KIvfLBFfeVsN&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1jhr1bFa-qDlHcTBFZzoDepBYWEL_vAEO&sz=w1000',
+                  ambiguity: 2,
+                  clues: '1*players'
+                },
+              ]
+            },
+            {
+              id: 4,
+              name: 'Даунтаун',
+              pack: [
+                {
+                  id: 4,
+                  name: 'Даунтаун',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1jTBSOoa7FJK3PX9EqGs05E8fxPQHLKdy&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1jsrKpD_PIYgDxk1eb67kxhikjAT6WCC5&sz=w1000',
+                  ambiguity: 3,
+                  clues: '1*players'
+                },
+                {
+                  id: 5,
+                  name: 'Даунтаун',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1jTBSOoa7FJK3PX9EqGs05E8fxPQHLKdy&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1j8YGUewmuXBYkSb7LTl5B-x_zdT5LCwN&sz=w1000',
+                  ambiguity: 4,
+                  clues: '2*players'
+                },
+              ]
+            },       
+            {
+              id: 6,
+              name: 'Ривертаун',
+              frontImg: 'https://drive.google.com/thumbnail?id=1jeoI6ofBUtNbk3PFLVYIUD8rcxu_3dX6&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1jNbCDihUUrfwG3iH37DSafZMTKbZelpX&sz=w1000',
+              ambiguity: 1,
+              clues: '1*players'
+            },    
+            {
+              id: 7,
+              name: 'Мискатоникский университет',
+              frontImg: 'https://drive.google.com/thumbnail?id=1j9LbAClgfjBRA-am3UNvXtOv6RO0QEFc&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1jn-PYHz2JAMSOoYZyvryrJd7RoYJLW4C&sz=w1000',
+              ambiguity: 4,
+              clues: '2*players'
+            },  
+            {
+              id: 8,
+              name: 'Кладбище',
+              frontImg: 'https://drive.google.com/thumbnail?id=1jHXaSCzmCRp_QsyV0f11jL7zXVHxYlwf&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1jhkfJySnabfA2pnFNDFu9Raimo-W6j5E&sz=w1000',
+              ambiguity: 1,
+              clues: '2*players'
+            },
+            {
+              id: 9,
+              name: 'Исттаун',
+              frontImg: 'https://drive.google.com/thumbnail?id=1jAAeN8jnX9biOSvRk8VL9IOg4i_FWeFB&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1jiSavMlxzGtSTM5AAAxjaSlymVGjZ-8r&sz=w1000',
+              ambiguity: 2,
+              clues: '1*players'
+            },
+            {
+              id: 10,
+              name: 'Больница Св. Марии',
+              frontImg: 'https://drive.google.com/thumbnail?id=1jw8vVzZ3-Tqz0r_thb1Kl2Tie44QoTSO&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1jokWGCgj62w80j3jmkh49jlW72NhO6g1&sz=w1000',
+              ambiguity: 2,
+              clues: '1*players'
+            },
+            {
+              id: 11,
+              name: 'Нортсайд',
+              frontImg: 'https://drive.google.com/thumbnail?id=1jP7FXTb_4VgylQ6knxTmU7Z0srNQ7y3O&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1jJUXbt2u-UG6YCMqpN9zGPtvlzISUL-g&sz=w1000',
+              ambiguity: 3,
+              clues: '2*players'
+            },
+          ],
+          plans: [
+            {
+              id: 1,
+              name: 'Глава 1',
+              frontImg: 'https://drive.google.com/thumbnail?id=1k9-htzXD1KNdUNdhs_GjpMD-4yjKmAiN&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1kAJaRu8QPsCugBTD-yJ86sUsSm_p3mSA&sz=w1000',
+              isEnemy: true,
+              tags: ['гуманоид', 'культист', 'элитный'],
+              appear: 'в зоне угрозы жертвы',
+              fight: 3,
+              escape: 4,
+              healthDmg: 2,
+              mindDmg: 1,
+              health: 4,
+              winPoints: 2,
+              despair: 6
+            },
+            {
+              id: 2,
+              name: 'Глава 2',
+              frontImg: 'https://drive.google.com/thumbnail?id=1k4AIntgGfUlFOyuiJy8vP2p9ncuqbGFY&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1k3OCpCUYpLyLopBW2sFg1yGOYReCDcxM&sz=w1000',
+              despair: 8
+            },
+          ],
+          scenes: [
+            {
+              id: 1,
+              name: 'Акт 1',
+              frontImg: 'https://drive.google.com/thumbnail?id=1kAs8iIf6pyP3ZzUJOWVywMMMxNARpbib&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1k9FUVvbK3CO-yOOztYPDgG5j5KAU6tan&sz=w1000',
+              clues: ''
+            },
+          ]
+        },
+        {
+          id: 3,
+          name: 'Глубинный пожиратель',
+          actMemo: {
+            frontImg: 'https://drive.google.com/thumbnail?id=1bb40JuSoznJsbaUcWo6S_DijqOkdRDIY&sz=w1000',
+            backImg: 'https://drive.google.com/thumbnail?id=1bekq7Ku4frqK56P6Te52R0EupqK4l2h2&sz=w1000'
+          },
+          contacts: ['depth-devourer', 'ancient-evil', 'gripped-by-fear', 'ghoules', 'dark-cult'],
+          locations: [
+            {
+              id: 1,
+              name: 'Основная тропа',
+              frontImg: 'https://drive.google.com/thumbnail?id=1kJXDfUqH8F9Ms0KTvaglr9j9ER0YZfRn&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1kUbfr47PdGnnD2kO9NqQRZHd41cOCQnM&sz=w1000',
+              ambiguity: 2,
+              clues: '0'
+            },
+            {
+              id: 2,
+              name: 'Аркхэмский лес',
+              pack: [
+                {
+                  id: 2,
+                  name: 'Аркхэмский лес',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1kQdr2fVbkuBYw6bZcDJEGZHvPymEiXi4&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1kS7N58PivdFH3zs_4m6LFSy3R5H4If8n&sz=w1000',
+                  ambiguity: 4,
+                  clues: '1*players'
+                }, 
+                {
+                  id: 3,
+                  name: 'Аркхэмский лес',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1kQdr2fVbkuBYw6bZcDJEGZHvPymEiXi4&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1kLAphr0Lwuo_L_TB3oj3uq5yUHqiQsgs&sz=w1000',
+                  ambiguity: 2,
+                  clues: '1*players'
+                }, 
+                {
+                  id: 4,
+                  name: 'Аркхэмский лес',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1kQdr2fVbkuBYw6bZcDJEGZHvPymEiXi4&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1kGwvi-Z2DvQij6_CApa-j_mzSsoF0vpx&sz=w1000',
+                  ambiguity: 2,
+                  clues: '1*players'
+                }, 
+                {
+                  id: 5,
+                  name: 'Аркхэмский лес',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1kQdr2fVbkuBYw6bZcDJEGZHvPymEiXi4&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1kFCE-Dp5hO70vENGoxWj2RpKKA7CDrAh&sz=w1000',
+                  ambiguity: 3,
+                  clues: '1*players'
+                }, 
+                {
+                  id: 6,
+                  name: 'Аркхэмский лес',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1kQdr2fVbkuBYw6bZcDJEGZHvPymEiXi4&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1kNMLGSp0_rrGAvK0JHk-gwGRIWyA99H_&sz=w1000',
+                  ambiguity: 2,
+                  clues: '1*players'
+                }, 
+                {
+                  id: 7,
+                  name: 'Аркхэмский лес',
+                  frontImg: 'https://drive.google.com/thumbnail?id=1kQdr2fVbkuBYw6bZcDJEGZHvPymEiXi4&sz=w1000',
+                  backImg: 'https://drive.google.com/thumbnail?id=1kCCQBooWo1--xA902pKq35Ve1NJM_TW1&sz=w1000',
+                  ambiguity: 1,
+                  clues: '0'
+                }, 
+              ],
+              copies: 4
+            },
+            {
+              id: 8,
+              name: 'Основная тропа',
+              frontImg: 'https://drive.google.com/thumbnail?id=1kHWHaNmfvAVNDw4P8Vi56Qxq7c6Ti0VO&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1kORYxqFdOXdF4ntI6C0Ycy1PqSUrJ3tB&sz=w1000',
+              ambiguity: 3,
+              clues: '2*players'
+            },
+          ],
+          plans: [
+            {
+              id: 1,
+              name: 'Глава 1',
+              frontImg: 'https://drive.google.com/thumbnail?id=1kVhTffxGyCslFfjRpNHu2AHnC5g_h4GI&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1kZ-I_W1qwg4ziQTZ_HIDZY_591BuhO0n&sz=w1000',
+              despair: 4
+            },
+            {
+              id: 2,
+              name: 'Глава 2',
+              frontImg: 'https://drive.google.com/thumbnail?id=1kad2tUP5uNlgsBbXd28Nd_Xg7K4NXu39&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1krUNSzMtnE6IXszNCfWrjGbXkUEyyPZD&sz=w1000',
+              despair: 5
+            },
+            {
+              id: 3,
+              name: 'Глава 3',
+              frontImg: 'https://drive.google.com/thumbnail?id=1knqW3K1jWSAkxoWdjL9XLU7o3brZSQOj&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1kkZ3BiLkf9Px_1P4APfDP9sQVdCf8kJN&sz=w1000',
+              despair: 5
+            },
+          ],
+          scenes: [
+            {
+              id: 1,
+              name: 'Акт 1',
+              frontImg: 'https://drive.google.com/thumbnail?id=1ktCViv7eV64EBESq1OAnN2wQkmCWm8xb&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1kmvgwjcqSX09WWeuENrd4M7WGTv1Ftnv&sz=w1000',
+              clues: '3*players'
+            },
+            {
+              id: 2,
+              name: 'Акт 2',
+              frontImg: 'https://drive.google.com/thumbnail?id=1kaRSewgK9K7EqNSDytk3t0BEdb83ysjW&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1kWoOUfiiALZaE3zYbB7LQ8rokA1iWjC1&sz=w1000',
+              clues: ''
+            },
+            {
+              id: 3,
+              name: 'Акт 3',
+              frontImg: 'https://drive.google.com/thumbnail?id=1kthh3pdWVcoFdFbY8SmzlfHDo54BXBo-&sz=w1000',
+              backImg: 'https://drive.google.com/thumbnail?id=1kpCsbmTH-Lc9sWB_3HpVQZQLswSTzZeR&sz=w1000',
+              clues: ''
+            }
+          ]
+        },
+      ],
       specialCards: [
         {
           id: 1,

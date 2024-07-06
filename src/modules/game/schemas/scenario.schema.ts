@@ -15,6 +15,8 @@ export class Scenario {
   acts: Act[];
   @Prop({required: true})
   specialCards: GameCard[];
+  @Prop({required: true})
+  contacts: {[key:string]: GameCard[]}
 }
 
 export const ScenarioSchema = SchemaFactory.createForClass(Scenario);
